@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF Extraction</title>
+</head>
+<body>
+    <h1>Upload PDF</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="text" name="search_term" placeholder="Search term">
+        <select name="search_type">
+            <option value="">Search by Term</option>
+            <option value="word_length">Search by Word Length</option>
+            <option value="numbers">Extract Numbers</option>
+        </select>
+        <button type="submit">Upload and Search</button>
+    </form>
+    
+</body>
+</html>

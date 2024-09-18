@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Extracted Data</title>
+</head>
+<body>
+    <h1>Extracted Data</h1>
+    
+    <!-- Back Button -->
+    <a href="{{ url_for('index') }}">
+        <button type="button">Back to Upload</button>
+    </a>
+    
+    <h2>Text</h2>
+    <pre>{{ extracted_text }}</pre>
+    
+    <h2>Images</h2>
+    {% if images %}
+        {% for image in images %}
+            <img src="{{ url_for('static', filename='images/' + image) }}" alt="Extracted Image" width="300"><br>
+        {% endfor %}
+    {% else %}
+        <p>No images found.</p>
+    {% endif %}
+    
+    <form action="/generate_pdf" method="post">
+        <input type="hidden" name="extracted_text" value="{{ extracted_text }}">
+        <input type="hidden" name="images" value="{{ images|join(',') }}">
+        <input type="hidden" name="filename" value="{{ filename }}">
+        <button type="submit">Download PDF</button>
+    </form>
+    
+    <form action="/generate_docx" method="post">
+        <input type="hidden" name="extracted_text" value="{{ extracted_text }}">
+        <input type="hidden" name="images" value="{{ images|join(',') }}">
+        <input type="hidden" name="filename" value="{{ filename }}">
+        <button type="submit">Download DOCX</button>
+    </form>
+</body>
+</html>
